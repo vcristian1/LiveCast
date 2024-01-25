@@ -3,6 +3,6 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <Button> CLICK ME</Button>
+    <Button size="lg"> CLICK ME</Button>
   )
 }
