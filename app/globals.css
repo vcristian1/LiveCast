@@ -7,6 +7,7 @@ body,
 :root {
   height: 100%;
   @apply bg-neutral-900/80;
+  @apply scrollbar-thin scrollbar-track-black scrollbar-thumb-blue-700
 }
  
 @layer base {
