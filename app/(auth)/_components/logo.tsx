@@ -21,7 +21,7 @@ export const Logo = () => {
                 <p className="text-xl font-semibold">
                 LiveCast
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm">
                 Let&apos;s stream
                 </p>
             </div>
