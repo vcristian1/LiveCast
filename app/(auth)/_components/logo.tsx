@@ -22,7 +22,7 @@ export const Logo = () => {
                 LiveCast
                 </p>
                 <p className="text-sm text-muted-foreground">
-                Let's stream
+                Let&apos;s stream
                 </p>
             </div>
         </div>
