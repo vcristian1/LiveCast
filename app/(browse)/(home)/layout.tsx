@@ -4,9 +4,12 @@ const BrowseLayout = ({
     children: React.ReactNode;
 }) => {
     return ( 
-        <div>
-         {children}   
-        </div>
+        <>
+            <nav></nav>
+            <div className="flex h-full pt-20">
+            {children}   
+            </div>
+        </>
      );
 }
  
