@@ -14,7 +14,13 @@ export const Logo = () => {
         <Link href="/">
             <div className='hidden lg:flex items-center gap-x-4 hover:opacity-75 transition duration-500'>
                 <div className='bg-white rounded-full p-1'>
-                    <Image width={32} height={32} alt="logo" src={LogoImage}/>
+                    <Image width={32} height={32} alt="LiveCast" src="/spooky.svg"/>
+                </div>
+                <div className={cn(font.className)}>
+                    <p className='text-lg font-semibold'>
+                        LiveCast
+                    </p>
+                    <p className='text-xs text-muted-foreground'>Let&apos;s Play</p>
                 </div>
             </div>
         </Link>
