@@ -8,7 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 export const Search = () => {
-    console.log("I am logged here")
+    const router = useRouter();
+    const [value, setValue] = useState("");
+
+    
+
     return (
         <form className="relative w-full lg:w-[400px] flex items-center">
             {/* I find the focus-visible: styling classes to be visually appealing to the eye, but they prevent the input from being fully accessible. 
