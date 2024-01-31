@@ -12,6 +12,9 @@ export const Search = () => {
     return (
         <form className="relative w-full lg:w-[400px] flex items-center">
             <Input placeholder="Search"/>
+            <Button>
+                <SearchIcon />
+            </Button>
         </form>
     )
 }
