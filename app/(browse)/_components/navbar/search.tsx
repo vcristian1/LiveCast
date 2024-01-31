@@ -11,7 +11,20 @@ export const Search = () => {
     const router = useRouter();
     const [value, setValue] = useState("");
 
-    
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if(!value) {
+            return;
+        }
+
+        const url = qs.stringify({
+            url: "/",
+            query: { term: value },
+        }, { skipEmptyString: true });
+
+        router.push(url);
+    }
 
     return (
         <form className="relative w-full lg:w-[400px] flex items-center">
