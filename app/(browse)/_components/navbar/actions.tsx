@@ -9,11 +9,11 @@ export const Actions = async () => {
     return (
         <div className="flex items-center justify-end gap-x-2 ml-4 lg:ml-0">
             {!user && (
-                <SignInButton>
-                    <Button>
+                <Button size="sm" variant="primary">
+                    <SignInButton>
                         Login
-                    </Button>
-                </SignInButton>
+                    </SignInButton>
+                </Button>
             )}
             {!!user && (
                 <div className="flex items-center gap-x-4">
