@@ -5,7 +5,6 @@ export default function Home() {
     <div className="flex flex-col gap-y-4 h-screen">
       <nav className="p-1 items-center justify-between gap-y-8">
         <h1 className="text-white">Dashboard</h1>
-        <UserButton afterSignOutUrl="/"/>
       </nav>
     </div>
   )
