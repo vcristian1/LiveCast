@@ -23,8 +23,8 @@ export const Actions = async () => {
                     className="text-muted-foreground hover:text-primary transition duration-500"
                     >
                         <Link href={`/u/${user.username}`} className="flex space-x-1">
-                            <Clapperboard />
-                            <span>
+                            <Clapperboard className="h-5 w-5 lg:mr-2"/>
+                            <span className="hidden lg:block">
                                 Dashboard
                             </span>
                         </Link>
