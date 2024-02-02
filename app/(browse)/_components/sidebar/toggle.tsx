@@ -18,7 +18,7 @@ export const Toggle = () => {
         <>
             {!collapsed && (
                 <div className="p-3 pl-6 mb-2 flex items-center w-full">
-                    <p className="font-semibold text-primary">Suggested for you</p>
+                    <p className="font-semibold text-primary">Recommended</p>
                     <Hint label={label} side="right" asChild>
                         <Button onClick={onCollapse} className="h-auto p-2 ml-auto transition duration-500" variant="ghost">
                             <ArrowLeftFromLine className="h-4 w-4"/>
