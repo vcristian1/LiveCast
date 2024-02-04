@@ -21,6 +21,13 @@ export const Recommended = ({
                     <p>For you</p>
                 </div>
             )}
+            <ul>
+                {data.map((user) => (
+                    <div key={user.id}>
+                        {user.username}
+                    </div>
+                ))}
+            </ul>
         </div>
     )
 }
