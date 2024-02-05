@@ -5,7 +5,7 @@ export const Sidebar = () => {
     return (
         <Wrapper>
            <Toggle />
-           <p>Recommended</p>
+           <p>Recommended!</p>
         </Wrapper>
     )
 }
