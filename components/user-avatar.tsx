@@ -25,10 +25,25 @@ const avatarSizes = cva(
 );
 
 
-export const UserAvatar = ({}: UserAvatarProps) => {
+export const UserAvatar = ({
+    username,
+    imageUrl,
+    isLive,
+    showBadge,
+    size
+}: UserAvatarProps) => {
+    const canShowBadge = showBadge && isLive;
+
     return (
-        <div>
-            UserAvatar
+        <div className="relative">
+            <Avatar className={cn(
+                // If the user isLive, red ring is around the avatar image
+                isLive && "ring-2 ring-rose-500 border border-bg"
+            )}>
+                <AvatarImage src={imageUrl} className="object-cover">
+                    
+                </AvatarImage>
+            </Avatar>
         </div>
     )
 }
