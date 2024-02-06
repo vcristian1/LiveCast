@@ -46,7 +46,9 @@ export const UserItem = ({
                      isLive={isLive}
                     //  showBadge
                     />
-
+                    {!collapsed && (
+                        <p className="truncate">{username}</p>
+                    )}
                 </div>
             </Link>
         </Button>
