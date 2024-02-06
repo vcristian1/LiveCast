@@ -9,6 +9,21 @@ interface UserAvatarProps {
     isLive?: boolean;
     showBadge?: boolean;
 }
+const avatarSizes = cva(
+    "",
+    {
+        variants: {
+            size: {
+                default: "h-8 w-8",
+                lg: "h-14 w-14"
+            },
+        },
+        defaultVariants: {
+            size: "default"
+        },
+    },
+);
+
 
 export const UserAvatar = ({}: UserAvatarProps) => {
     return (
