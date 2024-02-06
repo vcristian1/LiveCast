@@ -14,6 +14,7 @@ export const Recommended = ({
 }: RecommendedProps) => {
     const { collapsed } = useSidebar((state) => state);
 
+    // This will only show the label 'For you' if the sidebar is not collapsed, and if there is users in the database. If there is 0 then it will not render
     const showLabel = !collapsed && data.length > 0;
 
     return (
