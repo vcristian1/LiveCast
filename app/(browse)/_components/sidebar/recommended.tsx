@@ -22,7 +22,7 @@ export const Recommended = ({
                     <p>For you</p>
                 </div>
             )}
-            <ul>
+            <ul className="px-2 mb-4">
                 {data.map((user) => (
                     <UserItem 
                     key={user.id} 
