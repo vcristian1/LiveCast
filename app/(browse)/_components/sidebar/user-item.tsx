@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useSidebar } from "@/store/use-sidebar";
 import Link from "next/link";
 import { UserAvatar } from "@/components/user-avatar";
+import { LiveBadge } from "@/components/live-badge";
 
 
 interface UserItemProps {
@@ -48,6 +49,9 @@ export const UserItem = ({
                     />
                     {!collapsed && (
                         <p className="truncate">{username}</p>
+                    )}
+                    {!collapsed && isLive && (
+                        <LiveBadge className="ml-auto"/>
                     )}
                 </div>
             </Link>
