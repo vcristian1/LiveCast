@@ -44,7 +44,7 @@ export const UserItem = ({
                      imageUrl={imageUrl}
                      username={username}
                      isLive={isLive}
-                     showBadge
+                    //  showBadge
                     />
 
                 </div>
