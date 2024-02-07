@@ -93,3 +93,54 @@ export const blockUser = async (id: string) => {
     // Return the created block record
     return block;
 }
+
+// Define a function to unblock a user
+export const unblockUser = async (id: string) => {
+    // Retrieve information about the current user
+    const self = await getSelf();
+
+    // Check if the current user is attempting to unblock themselves
+    if (self.id === id) {
+        throw new Error("Cannot unblock yourself");
+    }
+
+    // Retrieve information about the user to be unblocked based on the provided id
+    const otherUser = await db.user.findUnique({
+        where: {
+            id,
+        }
+    });
+
+    // Throw an error if the user to be unblocked is not found
+    if (!otherUser) {
+        throw new Error("User not found");
+    }
+
+    // Check if there exists a block record where the current user is the blocker and the other user is blocked
+    const existingBlock = await db.block.findUnique({
+        where: {
+            blockerId_blockedId: {
+                blockerId: self.id,
+                blockedId: otherUser.id   
+            },
+        },
+    });
+
+    // If no existing block record is found, throw an error indicating that the user is not blocked
+    if (!existingBlock) {
+        throw new Error("Not Blocked!");
+    }
+
+    // Delete the existing block record from the database
+    const unblock = await db.block.delete({
+        where: {
+            id: existingBlock.id,
+        },
+        include: {
+            blocked: true, // Include information about the blocked user in the response
+        },
+    });
+
+    // Return the deleted block record
+    return unblock;
+}
