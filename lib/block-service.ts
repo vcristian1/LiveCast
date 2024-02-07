@@ -42,23 +42,29 @@ export const isBlockedByUser = async (id: string) => {
     }
 }
 
-export const blockUser = async (id:string) => {
+// Define a function to block a user
+export const blockUser = async (id: string) => {
+    // Retrieve information about the current user
     const self = await getSelf();
 
-    if(self.id === id) {
+    // Check if the current user is attempting to block themselves
+    if (self.id === id) {
         throw new Error("Cannot Block Yourself");
     }
 
+    // Retrieve information about the user to be blocked based on the provided id
     const otherUser = await db.user.findUnique({
         where: {
             id,
         }
     });
 
+    // Throw an error if the user to be blocked is not found
     if (!otherUser) {
-        throw new Error("User Not Found!")
+        throw new Error("User Not Found!");
     }
 
+    // Check if there exists a block record where the current user is the blocker and the other user is blocked
     const existingBlock = await db.block.findUnique({
         where: {
             blockerId_blockedId: {
@@ -68,19 +74,22 @@ export const blockUser = async (id:string) => {
         },
     });
 
-    if(existingBlock){
-        throw new Error("This User is already blocked!")
+    // If an existing block record is found, throw an error indicating that the user is already blocked
+    if (existingBlock) {
+        throw new Error("This User is already blocked!");
     }
 
+    // Create a new block record in the database with the current user as the blocker and the other user as blocked
     const block = await db.block.create({
         data: {
             blockerId: self.id,
             blockedId: otherUser.id
         },
         include: {
-            blocked: true,  
+            blocked: true, // Include information about the blocked user in the response
         },
     });
 
-    return block
+    // Return the created block record
+    return block;
 }
