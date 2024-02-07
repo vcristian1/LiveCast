@@ -25,8 +25,8 @@ export const Actions = ({
         });  
     };
     return (
-       <Button disabled={isFollowing || isPending} onClick={onClick} variant="primary">
-        Follow
+       <Button disabled={isPending} onClick={onClick} variant="primary">
+        {isFollowing ? "Unfollow" : "Follow"}
        </Button>
     )
 }
