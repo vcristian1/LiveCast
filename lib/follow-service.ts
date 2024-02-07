@@ -1,6 +1,26 @@
 import { getSelf } from "./auth-service";
 import { db } from "./db";
 
+// Goes through the db and looks at all the Users which have a matching followerId of the currently logged in user, meaning that its followed by that user.
+// We need this function to display on our sidebar the users which the logged in user currently follows.
+export const getFollowedUsers = async () => {
+    try {
+        const self = await getSelf();
+
+        const followedUsers = db.follow.findMany({
+            where: {
+                followerId: self.id
+            },
+            include: {
+                following: true,
+            },
+        })
+        return followedUsers;
+        } catch (error) {
+        return [];
+    }
+}
+
 //The isFollowingUser function is defined as an asynchronous function that takes a single parameter id of type string, representing the ID of the user being checked for follow status.
 export const isFollowingUser = async (id: string) => {
     //The function wraps its operations in a try-catch block
