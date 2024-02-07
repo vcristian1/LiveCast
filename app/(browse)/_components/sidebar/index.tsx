@@ -3,18 +3,20 @@ import { Recommended, RecommendedSkeleton } from "./recommended"
 import { Toggle, ToggleSkeleton } from "./toggle"
 import { Wrapper } from "./wrapper"
 import { getFollowedUsers } from "@/lib/follow-service"
+import { Following } from "./following"
 
 export const Sidebar = async () => {
     //recommended is equal to a function used to get the recommended users under 'For you'
     const recommended = await getRecommended();
     //follows is equal to a function used to get the followed users under 'Following'
-    const follows = await getFollowedUsers();
-    
+    const following = await getFollowedUsers();
+
     return (
         <Wrapper>
            <Toggle />
            <div className="space-y4 pt-4 lg:pt-0">
                 <Recommended data={recommended} />
+                <Following data={following} />
            </div>
         </Wrapper>
     )
