@@ -2,13 +2,25 @@
 
 import { onFollow } from "@/actions/follow";
 import { Button } from "@/components/ui/button";
+import { useTransition } from "react";
 
-export const Actions = () => {
+interface ActionsProps {
+    isFollowing: boolean;
+}
+
+export const Actions = ({
+    isFollowing,
+}: ActionsProps) => {
+    // Used for loading state
+    const [isPending, startTransition] = useTransition();
+
     const onClick = () => {
-        onFollow('123');
-    }
+        startTransition(() => {
+            onFollow('123');
+        });  
+    };
     return (
-       <Button onClick={onClick} variant="primary">
+       <Button disabled={isFollowing || isPending} onClick={onClick} variant="primary">
         Follow
        </Button>
     )
