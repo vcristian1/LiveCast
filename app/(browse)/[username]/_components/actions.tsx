@@ -7,17 +7,19 @@ import { toast } from "sonner";
 
 interface ActionsProps {
     isFollowing: boolean;
+    userId: string;
 }
 
 export const Actions = ({
     isFollowing,
+    userId,
 }: ActionsProps) => {
     // Used for loading state
     const [isPending, startTransition] = useTransition();
 
     const onClick = () => {
         startTransition(() => {
-            onFollow('123')
+            onFollow(userId)
                 .then(() => toast.success("Followed Successfully!"))
                 .catch(() => toast.error("Something went wrong!"));
         });  
