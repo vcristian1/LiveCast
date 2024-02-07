@@ -8,7 +8,7 @@ export const Actions = () => {
         onFollow('123');
     }
     return (
-       <Button variant="primary">
+       <Button onClick={onClick} variant="primary">
         Follow
        </Button>
     )
