@@ -25,11 +25,12 @@ export const isBlockedByUser = async (id: string) => {
             return false;
         }
 
-        // Check if there exists a block record where the other user is the blocker and the current user is blocked
-        const existingBlock = await db.block.findFirst({
+        const existingBlock = await db.block.findUnique({
             where: {
-                blockerId: otherUser.id,
-                blockedId: self.id,
+                blockerId_blockedId: {
+                    blockerId: otherUser.id,
+                    blockedId: self.id,
+                },
             },
         });
 
