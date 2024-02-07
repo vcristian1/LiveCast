@@ -125,6 +125,7 @@ export const unfollowUser = async (id: string) => {
         },
         include: {
             following: true, // Include the following user in the response
+            follower: true,
         },
     });
 

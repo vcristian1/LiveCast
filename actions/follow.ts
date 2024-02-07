@@ -1,11 +1,10 @@
 // This comment indicates that the following code should behave like an API route and not be bundled with client-side JavaScript.
 "use server";
-
 // Import the `revalidatePath` function from the `next/cache` module.
 import { revalidatePath } from "next/cache"; 
-
 // Import the `followUser` function from a local module located at `@/lib/follow-service`.
-import { followUser } from "@/lib/follow-service";
+import { followUser, unfollowUser } from "@/lib/follow-service";
+
 
 // Define an asynchronous function named `onFollow` that takes an `id` parameter.
 export const onFollow = async (id: string) => {
@@ -29,3 +28,19 @@ export const onFollow = async (id: string) => {
         throw new Error("Internal Error");
     }
 };
+
+export const onUnfollow = async (id: string) => {
+    try {
+        const unfollowedUser = await unfollowUser(id);
+
+        revalidatePath("/");
+
+        if(unfollowedUser) {
+            revalidatePath(`/${unfollowedUser?.following?.username}`)
+        }
+
+        return unfollowedUser;
+    } catch (error) {
+        throw new Error("Internal Error")
+    }
+}
