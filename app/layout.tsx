@@ -27,7 +27,7 @@ export default function RootLayout({
             forcedTheme="dark"
             storageKey="livecast-theme"
           >
-            <Toaster />
+            <Toaster theme="light" position="bottom-center"/>
             {children}
           </ThemeProvider>
         </body>
