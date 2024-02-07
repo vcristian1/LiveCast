@@ -28,7 +28,14 @@ export const Following = ({
                 collapsed && "px-0 lg:px-0",
                 !collapsed && "lg:px-2"
             )}>
-                
+                {data.map((follow) => (
+                    <UserItem 
+                    key={follow.following.id} 
+                    username={follow.following.username}
+                    imageUrl={follow.following.imageUrl}
+                    isLive={false}
+                    />
+                ))}
             </ul>
         </div>
     )
