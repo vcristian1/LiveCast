@@ -20,7 +20,7 @@ export const Recommended = ({
     return (
         <div>
             {showLabel && (
-                <div className="pl-6 mb-4 text-muted-foreground">
+                <div className="pl-6 mb-4 mt-4 text-muted-foreground">
                     <p>For you</p>
                 </div>
             )}

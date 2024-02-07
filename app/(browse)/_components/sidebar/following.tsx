@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/store/use-sidebar";
-import { UserItem } from "./user-item";
+import { UserItem, UserItemSkeleton } from "./user-item";
 import { Follow, User } from "@prisma/client";
 
 interface FollowingProps {
@@ -20,7 +20,7 @@ export const Following = ({
     return (
         <div>
             {showLabel && (
-                <div className="pl-6 mt-4 text-muted-foreground">
+                <div className="pl-6 mt-4 mb-4 text-muted-foreground">
                     <p>Following</p>
                 </div>
             )}
@@ -40,3 +40,13 @@ export const Following = ({
         </div>
     )
 }
+
+export const FollowingSkeleton = () => {
+    return (
+        <ul className="px-2 pt-2 lg:pt-0">
+            {[...Array(3)].map((_, i) => (
+                <UserItemSkeleton key={i}/>
+            ))}
+        </ul>
+    );
+};
