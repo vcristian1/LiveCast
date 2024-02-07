@@ -82,3 +82,52 @@ export const followUser = async (id: string) => {
     // Return the created follow relationship
     return follow;
 }
+
+// Define a function to unfollow a user
+export const unfollowUser = async (id: string) => {
+    // Retrieve information about the currently authenticated user
+    const self = await getSelf();
+
+    // Retrieve information about the user to be unfollowed
+    const otherUser = await db.user.findUnique({
+        where: {
+            id,
+        },
+    });
+
+    // Check if the user to be unfollowed exists
+    if (!otherUser) {
+        throw new Error("User Not Found!");
+    }
+
+    // Ensure the user is not trying to unfollow themselves
+    if (otherUser.id === self.id) {
+        throw new Error("Cannot unfollow yourself!");
+    }
+
+    // Check if the user is currently following the other user
+    const existingFollow = await db.follow.findFirst({
+        where: {
+           followerId: self.id,
+           followingId: otherUser.id, 
+        },
+    });
+
+    // If there's no existing follow relationship, throw an error
+    if (!existingFollow) {
+        throw new Error("Not Following!");
+    }
+
+    // Delete the existing follow relationship from the database
+    const follow = await db.follow.delete({
+        where: {
+            id: existingFollow.id,
+        },
+        include: {
+            following: true, // Include the following user in the response
+        },
+    });
+
+    // Return the deleted follow relationship
+    return follow;
+}
