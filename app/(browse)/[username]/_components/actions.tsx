@@ -75,7 +75,7 @@ export const Actions = ({
   return (
     <>
     <Button 
-      disabled={isBlocking} 
+      disabled={isBlocking || isPending} 
       onClick={onClickFollow} 
       variant="primary"
     >
