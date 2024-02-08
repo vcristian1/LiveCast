@@ -1,8 +1,13 @@
+"use server";
+
 import { blockUser, unblockUser } from "@/lib/block-service"; // Import the blockUser function from the block-service module
 import { revalidatePath } from "next/cache"; // Import the revalidatePath function from the next/cache module
 
 // Define a function to handle the blocking of a user
 export const onBlock = async (id: string) => {
+    //TODO: Logic for the ability to disconnect from a livestream
+    //TODO: Logic for allowing ability to kick a guest from livestream
+
     // Block the user identified by the provided id
     const blockedUser = await blockUser(id);
 
@@ -12,11 +17,12 @@ export const onBlock = async (id: string) => {
     // If the blocking operation was successful and a blockedUser object is returned
     if (blockedUser) {
         // Invalidate and revalidate the cache for the blocked user's profile page
-        revalidatePath(`/${blockedUser.blocked.username}`);
+        revalidatePath(`/${blockedUser?.blocked?.username}`);
     }
 
     // Return the blockedUser object
     return blockedUser;
+    
 }
 
 // Define a function to handle the unblocking of a user
