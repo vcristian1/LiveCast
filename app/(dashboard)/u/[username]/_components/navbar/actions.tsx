@@ -13,10 +13,11 @@ export const Actions = () => {
              className="text-muted-foreground hover:text-primary transition duration-500"
              >
                 <Link href={'/'}>
-                    <LogOut />
+                    <LogOut className="h-5 w-5 mr-2"/>
                     Exit
                 </Link>
             </Button>
+            <UserButton />
         </div>
     )
 }
