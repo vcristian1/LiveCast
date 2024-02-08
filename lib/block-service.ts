@@ -1,6 +1,36 @@
 import { db } from "@/lib/db";
 import { getSelf } from "@/lib/auth-service";
 
+export const isBlockingUser = async (id: string) => {
+  try {
+    const self = await getSelf();
+
+    const otherUser = await db.user.findUnique({
+      where: { id }
+    });
+
+    if (!otherUser) {
+      throw new Error("User not found");
+    }
+
+    if (otherUser.id === self.id) {
+      return false;
+    }
+
+    const existingBlock = await db.block.findFirst({
+      where: {
+          blockerId: self.id, // Switched blockerId and blockedId
+          blockedId: otherUser.id, // Switched blockerId and blockedId
+        },
+      },
+    );
+
+    return !!existingBlock;
+  } catch {
+    return false;
+  }
+};
+
 export const isBlockedByUser = async (id: string) => {
   try {
     const self = await getSelf();
@@ -17,14 +47,13 @@ export const isBlockedByUser = async (id: string) => {
       return false;
     }
 
-    const existingBlock = await db.block.findUnique({
+    const existingBlock = await db.block.findFirst({
       where: {
-        blockerId_blockedId: {
           blockerId: otherUser.id,
           blockedId: self.id,
         },
       },
-    });
+    );
 
     return !!existingBlock;
   } catch {

@@ -5,40 +5,21 @@ import { revalidatePath } from "next/cache"; // Import the revalidatePath functi
 
 // Define a function to handle the blocking of a user
 export const onBlock = async (id: string) => {
-    //TODO: Logic for the ability to disconnect from a livestream
-    //TODO: Logic for allowing ability to kick a guest from livestream
-
-    // Block the user identified by the provided id
     const blockedUser = await blockUser(id);
+    revalidatePath("/")
 
-    // Invalidate and revalidate the cache for the root path ("/")
-    revalidatePath("/");
-
-    // If the blocking operation was successful and a blockedUser object is returned
-    if (blockedUser) {
-        // Invalidate and revalidate the cache for the blocked user's profile page
-        revalidatePath(`/${blockedUser?.blocked?.username}`);
+    if(blockedUser) {
+      revalidatePath(`/${blockedUser.blocked.username}`)
     }
-
-    // Return the blockedUser object
     return blockedUser;
-    
-}
-
-// Define a function to handle the unblocking of a user
-export const onUnblock = async (id: string) => {
-    // unblock the user identified by the provided id
+  };
+  
+  export const onUnblock = async (id: string) => {
     const unblockedUser = await unblockUser(id);
+    revalidatePath("/")
 
-    // Invalidate and revalidate the cache for the root path ("/")
-    revalidatePath("/");
-
-    // If the unblocking operation was successful and a unblockedUser object is returned
-    if (unblockedUser) {
-        // Invalidate and revalidate the cache for the unblocked user's profile page
-        revalidatePath(`/${unblockedUser.blocked.username}`);
+    if(unblockedUser) {
+      revalidatePath(`/${unblockedUser.blocked.username}`)
     }
-
-    // Return the unblockedUser object
     return unblockedUser;
-}
+  };

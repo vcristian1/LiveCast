@@ -14,9 +14,9 @@ export const getFollowedUsers = async () => {
                     blocking: {
                         none: {
                             blockedId: self.id
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             },
             include: {
                 following: true,
