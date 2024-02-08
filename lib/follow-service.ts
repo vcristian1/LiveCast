@@ -76,6 +76,11 @@ export const followUser = async (id: string) => {
         throw new Error("User Not Found");
     }
 
+    // Check if the user to be followed exists
+    if (!otherUser) {
+        throw new Error("User Not Found");
+    }
+
     // Ensure the user is not trying to follow themselves
     if (otherUser.id === self.id) {
         throw new Error("Cannot follow yourself!");

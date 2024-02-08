@@ -48,6 +48,11 @@ export const Actions = ({
       onBlock(userId)
       .then((data) => toast.success(`Blocked ${data.blocked.username}`))
       .catch(() => toast.error('Something went wrong!'))
+      if(isFollowing){
+        onUnfollow(userId)
+        .then((data) => toast.success(`You have unfollowed ${data.following.username}`))
+        .catch(() => toast.error("Something went wrong"));
+      }
     });
   };
 
@@ -70,7 +75,7 @@ export const Actions = ({
   return (
     <>
     <Button 
-      disabled={isPending} 
+      disabled={isBlocking} 
       onClick={onClickFollow} 
       variant="primary"
     >
