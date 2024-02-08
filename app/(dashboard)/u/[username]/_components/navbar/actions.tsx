@@ -12,12 +12,12 @@ export const Actions = () => {
              variant="ghost"
              className="text-muted-foreground hover:text-primary transition duration-500"
              >
-                <Link href={'/'}>
+                <Link className="flex" href={'/'}>
                     <LogOut className="h-5 w-5 mr-2"/>
                     Exit
                 </Link>
             </Button>
-            <UserButton />
+            <UserButton afterSignOutUrl="/"/>
         </div>
     )
 }
