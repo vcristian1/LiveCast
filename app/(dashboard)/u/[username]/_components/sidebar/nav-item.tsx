@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"; // Importing Button component
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils"; // Importing cn utility function for classname concatenation
 import { useCreatorSidebar } from "@/store/use-creator-sidebar"; // Importing custom hook for creator sidebar functionality
 import { LucideIcon } from "lucide-react"; // Importing LucideIcon component from lucide-react library
@@ -45,3 +46,11 @@ export const NavItem = ({
         </Button>
     );
 };
+
+export const NavItemSkeleton = () => {
+    return (
+        <li className="flex items-center gap-x-4 px-3 py-2">
+            <Skeleton />
+        </li>
+    )
+}
