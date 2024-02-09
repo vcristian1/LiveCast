@@ -28,8 +28,8 @@ export const Following = ({
                 </div>
             )}
             {showIcon && (
-                <div className="pl-6 mt-8 mb-4 text-muted-foreground items-center justify-center">
-                    <UserCheck className="h-6 w-6"/>
+                <div className="pl-6 mt-2 mb-4 text-muted-foreground items-center justify-center">
+                    <UserCheck className="text-white ml-1 h-4 w-4"/>
                 </div>
             )}
             <ul className={cn(
