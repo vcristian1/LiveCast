@@ -143,16 +143,19 @@ export const unblockUser = async (id: string) => {
 };
 
 export const getBlockedUsers = async () => {
-  const self = await getSelf();
+  try {
+      const self = await getSelf();
 
-  const blockedUsers = await db.block.findMany({
-    where: {
-      blockerId: self.id,
-    },
-    include: {
-      blocked: true,
-    },
-  });
-
-  return blockedUsers;
+      const blockedUsers = await db.block.findMany({
+          where: {
+              blockerId: self.id,
+          },
+          include: {
+              blocked: true,
+          },
+      });
+      return blockedUsers;
+  } catch (error) {
+      return []; // Return an empty array if user is not logged in or an error occurs
+  }
 };

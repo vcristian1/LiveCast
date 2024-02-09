@@ -2,12 +2,11 @@ import { db } from "./db"
 import { getSelf } from "./auth-service"
 
 export const getRecommended = async () => {
-    //Adds a 3 second pause before loading users which enables us to see the Skeletons we created in recommended.
-    // await new Promise(resolve => setTimeout(resolve, 500));
     let userId;
     try {
         const self = await getSelf();
         userId = self.id;
+        
     } catch (error) {
         userId = null;
     }
@@ -32,15 +31,18 @@ export const getRecommended = async () => {
                         }
                     }
                   },
-                  {// NOT including users who have been blocked by the logged in user
+                  {
                     NOT: {
-                        blocking: {
-                            some: {
-                                blockedId: userId,
+                        OR: [
+                            { // Exclude users who have blocked the logged-in user
+                                blocking: { some: { blockedId: userId } }
+                            },
+                            { // Exclude users whom the logged-in user has blocked
+                                blockedBy: { some: { blockerId: userId } }
                             }
-                        }
+                        ]
                     }
-                  }
+                }
               ]
                 
             },

@@ -4,6 +4,7 @@ import { User } from "@prisma/client"
 import { useSidebar } from "@/store/use-sidebar";
 import { UserItem, UserItemSkeleton } from "./user-item";
 import { cn } from "@/lib/utils";
+import { UserPlus, UserRoundSearchIcon } from "lucide-react";
 
 interface RecommendedProps {
     data: User[];
@@ -16,12 +17,18 @@ export const Recommended = ({
 
     // This will only show the label 'For you' if the sidebar is not collapsed, and if there is users in the database. If there is 0 then it will not render
     const showLabel = !collapsed && data.length > 0;
+    const showIcon = collapsed && data.length > 0;
 
     return (
         <div>
             {showLabel && (
                 <div className="pl-6 mb-4 mt-4 text-muted-foreground">
                     <p>For you</p>
+                </div>
+            )}
+            {showIcon && (
+                <div className="pl-6 mb-4 mt-4 text-muted-foreground">
+                    <UserPlus />
                 </div>
             )}
             <ul className={cn(
