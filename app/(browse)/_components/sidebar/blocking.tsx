@@ -22,13 +22,13 @@ export const Blocking = ({
     return (
         <div>
             {showLabel && (
-                <div className="pl-6 lg:mt-8 mb-4 text-muted-foreground">
+                <div className="pl-6 lg:mt-4 mb-4 text-muted-foreground">
                     <p>Blocking</p>
                 </div>
             )}
             {showIcon && (
                 <div className="pl-6 mt-8 mb-4 text-muted-foreground items-center justify-center">
-                    <Ban className="h-5 w-5"/>
+                    <Ban className="h-6 w-6"/>
                 </div>
             )}
             <ul className={cn(

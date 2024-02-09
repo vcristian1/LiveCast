@@ -27,8 +27,8 @@ export const Recommended = ({
                 </div>
             )}
             {showIcon && (
-                <div className="pl-6 mb-4 mt-4 text-muted-foreground">
-                    <UserPlus />
+                <div className="pl-6 mb-4 mt-8 text-muted-foreground items-center justify-center">
+                    <UserPlus className="h-6 w-6"/>
                 </div>
             )}
             <ul className={cn(

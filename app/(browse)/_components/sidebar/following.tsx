@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { useSidebar } from "@/store/use-sidebar";
 import { UserItem, UserItemSkeleton } from "./user-item";
 import { Follow, User } from "@prisma/client";
-import { UserPlus, UserRoundSearchIcon } from "lucide-react";
+import { UserCheck, UserPlus, UserRoundSearchIcon } from "lucide-react";
 
 interface FollowingProps {
     data: (Follow & {following: User})[];
@@ -28,8 +28,8 @@ export const Following = ({
                 </div>
             )}
             {showIcon && (
-                <div className="pl-6 mt-4 mb-4 text-muted-foreground items-center justify-center">
-                    <UserRoundSearchIcon className="h-5 w-5"/>
+                <div className="pl-6 mt-8 mb-4 text-muted-foreground items-center justify-center">
+                    <UserCheck className="h-6 w-6"/>
                 </div>
             )}
             <ul className={cn(
