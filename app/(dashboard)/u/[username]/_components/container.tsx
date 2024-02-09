@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts"; // Importing useMediaQuery hook
 import { cn } from "@/lib/utils";
