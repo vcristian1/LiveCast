@@ -7,6 +7,7 @@ import { ToggleSkeleton } from "./toggle";
 import { RecommendedSkeleton } from "./recommended";
 import { useIsClient } from "usehooks-ts";
 import { FollowingSkeleton } from "./following";
+import { BlockingSkeleton } from "./blocking";
 
 interface WrapperProps {
     children: React.ReactNode;
@@ -24,6 +25,7 @@ export const Wrapper = ({
             <ToggleSkeleton />
             <FollowingSkeleton />
             <RecommendedSkeleton />
+            <BlockingSkeleton />
         </aside>
     );
 
