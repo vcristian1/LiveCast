@@ -66,11 +66,11 @@ model Follow {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+
   @@unique([followerId, followingId])
-  @@index([followingId])
   @@index([followerId])
-} 
+  @@index([followingId])
+}
 
 model Block {
   id String @id @default(uuid())
@@ -84,4 +84,3 @@ model Block {
   @@index([blockerId])
   @@index([blockedId])
 }
-
