@@ -5,6 +5,7 @@ import { useSidebar } from "@/store/use-sidebar";
 import { UserItem, UserItemSkeleton } from "./user-item";
 import { Block, User } from "@prisma/client";
 import { Ban } from "lucide-react";
+import { Hint } from "@/components/hint";
 
 interface BlockingProps {
     data: (Block & {blocked: User})[];
@@ -18,17 +19,20 @@ export const Blocking = ({
     // This will only show the label 'Following' if the sidebar is not collapsed, and if there is users in the database. If there is 0 then it will not render
     const showLabel = !collapsed && data.length > 0;
     const showIcon = collapsed && data.length > 0;
+    const label = "Blocked"
 
     return (
         <div>
             {showLabel && (
                 <div className="pl-6 lg:mt-4 mb-4 text-muted-foreground">
-                    <p>Blocking</p>
+                    <p>Blocked</p>
                 </div>
             )}
             {showIcon && (
-                <div className="pl-6 mt-8 mb-4 text-muted-foreground items-center justify-center">
-                    <Ban className="text-white ml-1 h-4 w-4"/>
+                <div className="pl-7 mt-8 mb-4 text-muted-foreground items-center justify-center">
+                    <Hint label={label} side="right" asChild>
+                        <Ban className="text-white h-4 w-4"/>
+                    </Hint>
                 </div>
             )}
             <ul className={cn(

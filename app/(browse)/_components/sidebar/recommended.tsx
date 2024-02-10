@@ -5,6 +5,7 @@ import { useSidebar } from "@/store/use-sidebar";
 import { UserItem, UserItemSkeleton } from "./user-item";
 import { cn } from "@/lib/utils";
 import { UserPlus, UserRoundSearchIcon } from "lucide-react";
+import { Hint } from "@/components/hint";
 
 interface RecommendedProps {
     data: User[];
@@ -18,17 +19,20 @@ export const Recommended = ({
     // This will only show the label 'For you' if the sidebar is not collapsed, and if there is users in the database. If there is 0 then it will not render
     const showLabel = !collapsed && data.length > 0;
     const showIcon = collapsed && data.length > 0;
+    const label = "Recommended"
 
     return (
         <div>
             {showLabel && (
                 <div className="pl-6 mb-4 mt-4 text-muted-foreground">
-                    <p>For you</p>
+                    <p>Recommended</p>
                 </div>
             )}
             {showIcon && (
                 <div className="pl-6 mb-4 mt-8 text-muted-foreground items-center justify-center">
-                    <UserPlus className="text-white ml-1 h-4 w-4"/>
+                    <Hint label={label} side="right" asChild>
+                        <UserPlus className="text-white ml-1 h-4 w-4"/>
+                    </Hint>
                 </div>
             )}
             <ul className={cn(

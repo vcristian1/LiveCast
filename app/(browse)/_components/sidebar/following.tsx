@@ -5,6 +5,7 @@ import { useSidebar } from "@/store/use-sidebar";
 import { UserItem, UserItemSkeleton } from "./user-item";
 import { Follow, User } from "@prisma/client";
 import { UserCheck, UserPlus, UserRoundSearchIcon } from "lucide-react";
+import { Hint } from "@/components/hint";
 
 interface FollowingProps {
     data: (Follow & {following: User})[];
@@ -18,7 +19,7 @@ export const Following = ({
     // This will only show the label 'Following' if the sidebar is not collapsed, and if there is users in the database. If there is 0 then it will not render
     const showLabel = !collapsed && data.length > 0;
     const showIcon = collapsed && data.length > 0;
-
+    const label = "Following";
 
     return (
         <div>
@@ -29,7 +30,9 @@ export const Following = ({
             )}
             {showIcon && (
                 <div className="pl-6 mt-2 mb-4 text-muted-foreground items-center justify-center">
-                    <UserCheck className="text-white ml-1 h-4 w-4"/>
+                    <Hint label={label} side="right" asChild>
+                        <UserCheck className="text-white ml-1 h-4 w-4"/>
+                    </Hint>
                 </div>
             )}
             <ul className={cn(
