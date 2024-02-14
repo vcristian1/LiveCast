@@ -2,6 +2,7 @@ import { getSelf } from "@/lib/auth-service";
 import { getStreamByUserId } from "@/lib/stream-service";
 
 import { UrlCard } from "./_components/url-card";
+import { Button } from "@/components/ui/button";
 
 const UrlsPage = async () => {
   const self = await getSelf();
@@ -17,6 +18,9 @@ const UrlsPage = async () => {
         <h1 className="text-2xl font-bold">
           Keys & URLs
         </h1>
+        <Button variant="primary">
+            Generate
+        </Button>
       </div>
       <div className="space-y-4">
         <UrlCard value={stream.serverUrl} />
