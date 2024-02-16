@@ -40,6 +40,7 @@ export const Recommended = ({
                 !collapsed && "lg:px-2"
             )}>
                 {data.map((user) => (
+                
                     <UserItem 
                     key={user.id} 
                     username={user.username}
